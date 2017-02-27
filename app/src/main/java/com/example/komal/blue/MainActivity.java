@@ -117,14 +117,10 @@ public class MainActivity extends AppCompatActivity{
 
             }
         };
-        //sensor registration with listener
-       // sensorManager = (SensorManager)shakeContext.getSystemService(Context.SENSOR_SERVICE);
-       // accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-       // sensorManager.registerListener(accelerometerListener, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+
         sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(accelerometerListener, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-
 
 
         //read file for previously used phone number
@@ -224,7 +220,7 @@ public class MainActivity extends AppCompatActivity{
 
     //set the values to accelerometer text
     public void setValues(float x, float y, float z){
-        accelerometerValues.setText("X: " + x + ", Y: " + y + ", Z: " + z);
+        accelerometerValues.setText("X: " + x + "\nY: " + y + "\nZ: " + z);
     }
 
 }

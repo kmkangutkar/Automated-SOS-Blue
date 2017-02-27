@@ -33,17 +33,17 @@ public class FindLocation implements LocationListener{
         gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         networkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-        if (!gpsEnabled && !networkEnabled){
+        if (!isGpsEnabled() && !isNetworkEnabled()){
             //cannot get location
             canGetLocation = false;
         }else {
             canGetLocation = true;
-            if (networkEnabled){
+            if (isNetworkEnabled()){
                 providerManager(LocationManager.NETWORK_PROVIDER);
                 System.out.println("Using Network");
                 Log.d("Network", "Network1");
             }
-            if (gpsEnabled && location == null){
+            if (isGpsEnabled() && location == null){
                 //if network doesn't work use gps
                 providerManager(LocationManager.GPS_PROVIDER);
                 System.out.println("Using gps");
@@ -54,6 +54,8 @@ public class FindLocation implements LocationListener{
     }
 
     private void providerManager(String provider){
+        //shows error because it thinks that permission check has not been done
+        //permission check is done separately
         locationManager.requestLocationUpdates(provider, UPDATE_INTERVAL, UPDATE_DISTANCE, this);
         if(locationManager != null){
             location = locationManager.getLastKnownLocation(provider);
